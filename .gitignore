@@ -1,0 +1,35 @@
+# User Requested Exclusions
+memory-bank/
+AGENTS.md
+mds/
+
+# System & IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Python / Django
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.so
+db.sqlite3
+db.sqlite3-journal
+*.log
+
+# Environment / Secrets
+.env
+.env.*
+!.env.example
+
+# Frontend
+node_modules/
+dist/
+coverage/
+.output/
+
+# Media
+# backend/media/
