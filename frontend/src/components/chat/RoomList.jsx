@@ -4,6 +4,7 @@
  */
 
 import React from 'react';
+import { BACKEND_URL } from '../../config';
 
 const RoomList = ({ rooms, selectedRoom, onRoomSelect }) => {
   const getRoomIcon = (room) => {
@@ -29,7 +30,7 @@ const RoomList = ({ rooms, selectedRoom, onRoomSelect }) => {
         if (room.other_user?.profile_image) {
           return (
             <img
-              src={`http://localhost:8000${room.other_user.profile_image}`}
+              src={`${BACKEND_URL}${room.other_user.profile_image}`}
               alt={room.other_user.full_name}
               className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover flex-shrink-0"
             />

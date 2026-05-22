@@ -4,6 +4,7 @@
 
 import React, { useState } from 'react';
 import { chatAPI } from '../../services/chatAPI';
+import { BACKEND_URL } from '../../config';
 
 const CreatePrivateChat = ({ onClose, onCreateChat }) => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -131,7 +132,7 @@ const CreatePrivateChat = ({ onClose, onCreateChat }) => {
               >
                 {/* Avatar */}
                 <img
-                  src={user.profile_image ? `http://localhost:8000${user.profile_image}` : '/default-avatar.png'}
+                  src={user.profile_image ? `${BACKEND_URL}${user.profile_image}` : '/default-avatar.png'}
                   alt={user.full_name || user.username}
                   className="w-12 h-12 rounded-full object-cover"
                 />

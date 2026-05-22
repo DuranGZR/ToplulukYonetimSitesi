@@ -4,6 +4,8 @@
  * Supports: General chat, Committee chats, Private messages
  */
 
+import { WS_URL } from '../config';
+
 class ChatService {
   constructor() {
     this.connections = new Map(); // room_id -> connection
@@ -45,7 +47,7 @@ class ChatService {
       }
     }
 
-    const wsUrl = `ws://localhost:8000/ws/chat/${roomId}/?token=${token}`;
+    const wsUrl = `${WS_URL}/ws/chat/${roomId}/?token=${token}`;
     const ws = new WebSocket(wsUrl);
     
     // Token ve user bilgisini bağlantıya ekle

@@ -3,6 +3,8 @@
  * Handles real-time connections for notifications, project boards, and committee chats
  */
 
+import { WS_URL } from '../config';
+
 class WebSocketService {
   constructor() {
     this.connections = new Map(); // Store multiple WebSocket connections
@@ -24,7 +26,7 @@ class WebSocketService {
     }
 
     const token = localStorage.getItem('access_token');
-    const wsUrl = `ws://localhost:8000/ws/${endpoint}`;
+    const wsUrl = `${WS_URL}/ws/${endpoint}`;
     
     const ws = new WebSocket(wsUrl);
     

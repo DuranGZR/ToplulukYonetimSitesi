@@ -33,3 +33,8 @@ coverage/
 
 # Media
 # backend/media/
+
+# Local database backups and custom helper scripts
+hsd_platform_backup.sql
+backend/list_tools.py
+backend/users.txt

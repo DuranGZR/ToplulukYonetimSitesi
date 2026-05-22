@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 from decouple import config
 from datetime import timedelta
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -103,16 +104,14 @@ ASGI_APPLICATION = "config.asgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-# PostgreSQL Database Configuration
+# Database Configuration (PostgreSQL dynamically loaded from environment)
+default_db_url = f"postgresql://{config('DB_USER', default='postgres')}:{config('DB_PASSWORD', default='postgres')}@{config('DB_HOST', default='localhost')}:{config('DB_PORT', default='5432')}/{config('DB_NAME', default='hsd_platform')}"
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": config('DB_NAME', default='hsd_platform'),
-        "USER": config('DB_USER', default='postgres'),
-        "PASSWORD": config('DB_PASSWORD', default='postgres'),
-        "HOST": config('DB_HOST', default='localhost'),
-        "PORT": config('DB_PORT', default='5432'),
-    }
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL', default=default_db_url),
+        conn_max_age=600
+    )
 }
 
 
@@ -169,6 +168,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CORS_ALLOWED_ORIGINS = config('CORS_ALLOWED_ORIGINS', default='http://localhost:5173').split(',')
 CORS_ALLOW_CREDENTIALS = True
 
+# CSRF Settings
+CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS', default='http://localhost:8000,http://127.0.0.1:8000').split(',')
+
 # REST Framework Settings
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -202,7 +204,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [(config('REDIS_HOST', default='127.0.0.1'), config('REDIS_PORT', default=6379, cast=int))],
+            "hosts": [config('REDIS_URL', default=f"redis://{config('REDIS_HOST', default='127.0.0.1')}:{config('REDIS_PORT', default=6379, cast=int)}")],
         },
     },
 }

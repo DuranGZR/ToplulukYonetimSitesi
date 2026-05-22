@@ -4,8 +4,9 @@
  */
 
 import axios from 'axios';
+import { BACKEND_URL } from '../config';
 
-const API_BASE_URL = 'http://localhost:8000/api/v1/chats';
+const API_BASE_URL = `${BACKEND_URL}/api/v1/chats`;
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -85,7 +86,7 @@ export const chatAPI = {
    * @param {string} query - Search query
    */
   searchUsers: async (query) => {
-    const response = await axios.get('http://localhost:8000/api/v1/users/search/', {
+    const response = await axios.get(`${BACKEND_URL}/api/v1/users/search/`, {
       params: { q: query },
       headers: {
         Authorization: `Bearer ${localStorage.getItem('accessToken')}`

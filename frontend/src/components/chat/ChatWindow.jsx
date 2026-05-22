@@ -7,6 +7,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { chatService } from '../../services/chat';
 import { chatAPI } from '../../services/chatAPI';
+import { BACKEND_URL } from '../../config';
 
 const ChatWindow = ({ room, onBack }) => {
   const { user } = useAuth();
@@ -301,7 +302,7 @@ const ChatWindow = ({ room, onBack }) => {
             >
               {!isOwnMessage && showAvatar && (
                 <img
-                  src={msg.sender_profile_image ? `http://localhost:8000${msg.sender_profile_image}` : '/default-avatar.png'}
+                  src={msg.sender_profile_image ? `${BACKEND_URL}${msg.sender_profile_image}` : '/default-avatar.png'}
                   alt={msg.sender_full_name}
                   className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full mr-1.5 sm:mr-2"
                 />
