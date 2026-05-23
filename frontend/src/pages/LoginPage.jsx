@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import hsdLogo from '../public/hsd-logo.png'
 
 export default function LoginPage() {
   const [username, setUsername] = useState('')
@@ -26,9 +27,9 @@ export default function LoginPage() {
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-black via-primary-dark to-black">
       <div className="card w-full max-w-md shadow-2xl">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold mb-2">
-            <span className="text-accent-red">HSD</span> İnönü
-          </h1>
+          <div className="flex justify-center mb-4">
+            <img src={hsdLogo} alt="HSD İnönü Logo" className="h-16 w-auto object-contain" />
+          </div>
           <p className="text-gray-400">Topluluk Yönetim Sistemi</p>
         </div>
 

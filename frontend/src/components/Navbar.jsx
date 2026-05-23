@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import GlobalSearch from './GlobalSearch'
 import NotificationDropdown from './NotificationDropdown'
+import hsdLogo from '../public/hsd-logo.png'
 
 export default function Navbar({ onMenuClick }) {
   const { user, logout } = useAuth()
@@ -30,11 +31,8 @@ export default function Navbar({ onMenuClick }) {
               </svg>
             </button>
 
-            <Link to="/dashboard" className="flex items-center space-x-2">
-              <span className="text-xl font-bold">
-                <span className="text-red-600">HSD</span>
-                <span className="text-white"> İnönü</span>
-              </span>
+            <Link to="/dashboard" className="flex items-center">
+              <img src={hsdLogo} alt="HSD İnönü Logo" className="h-8 w-auto object-contain" />
             </Link>
           </div>
 
