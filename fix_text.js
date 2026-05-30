@@ -1,0 +1,1 @@
+const fs = require('fs'); const file = 'c:/Users/duran/Desktop/HSDsite/frontend/src/pages/LandingPage.jsx'; let code = fs.readFileSync(file, 'utf8'); code = code.replace(/text-\\[(7|8|9|10|11|12|13)px\\](?! md:)/g, (m) => 'text-[11px] md:' + m); fs.writeFileSync(file, code); console.log('Replaced text sizes');
